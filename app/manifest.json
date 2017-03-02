@@ -1,6 +1,6 @@
 {
   "name": "__MSG_appName__",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
   "icons": {
@@ -23,7 +23,8 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.imdb.com/name/*"
+        "*://*.imdb.com/name/*",
+        "*://*.imdb.com/find*"
       ],
       "js": [
         "scripts/contentscript.js"

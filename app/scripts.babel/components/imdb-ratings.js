@@ -16,13 +16,21 @@ export default class IMDB {
   }
 
   init() {
-    $('.filmo-row').each((index, el) => {
-      const url = $('a', el)[0].href;
+    $('.filmo-row, .findResult').each((index, el) => {
+      const $a = $('a', el);
+      let a = null;
+
+      if ($(el).hasClass('filmo-row')) {
+        a = $a[0];
+      } else if ($(el).hasClass('findResult')) {
+        a = $a[1];
+      }
+      const url = a.href;
       const id = this.getIdFromLink(url);
 
       this.getOmdbObjectFromId(id).done(data => {
         if (!isNaN(data.imdbRating)) {
-          $(el).closest('.filmo-row').prepend(`<span style='float: right; font-weight: bold;'>&nbsp;(${data.imdbRating})</span>`);
+          $(a).append(`<span style='float: right; font-weight: bold;'>&nbsp;(${data.imdbRating})</span>`);
         }
       })
     });
