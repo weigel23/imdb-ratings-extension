@@ -7,11 +7,11 @@ export default class IMDB {
 
   getIdFromLink(href) {
     const matches = href.match(/title\/([a-z0-9]+)/i);
-    
+
     return matches ? matches[1] : null;
   }
 
-  getRatingFromId(id) {
+  getOmdbObjectFromId(id) {
     return $.get(`http://www.omdbapi.com/?i=${id}`);
   }
 
@@ -20,7 +20,7 @@ export default class IMDB {
       const url = $('a', el)[0].href;
       const id = this.getIdFromLink(url);
 
-      this.getRatingFromId(id).done(data => {
+      this.getOmdbObjectFromId(id).done(data => {
         if (!isNaN(data.imdbRating)) {
           $(el).closest('.filmo-row').prepend(`<span style='float: right; font-weight: bold;'>&nbsp;(${data.imdbRating})</span>`);
         }

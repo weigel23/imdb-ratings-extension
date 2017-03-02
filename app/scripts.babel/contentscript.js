@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import imdbRating from './components/imdb-ratings';
+import IMDB from './components/imdb-ratings';
 
 $(() => {
-  const IMDB_RATING = new imdbRating();
+  new IMDB();
 });
