@@ -25,14 +25,17 @@ export default class IMDB {
       } else if ($(el).hasClass('findResult')) {
         a = $a[1];
       }
-      const url = a.href;
-      const id = this.getIdFromLink(url);
 
-      this.getOmdbObjectFromId(id).done(data => {
-        if (!isNaN(data.imdbRating)) {
-          $(a).append(`<span style='float: right; font-weight: bold;'>&nbsp;(${data.imdbRating})</span>`);
-        }
-      })
+      if (typeof a !== 'undefined') {
+        const url = a.href;
+        const id = this.getIdFromLink(url);
+
+        this.getOmdbObjectFromId(id).done(data => {
+          if (!isNaN(data.imdbRating)) {
+            $(a).append(`<span style='float: right; font-weight: bold;'>&nbsp;(${data.imdbRating})</span>`);
+          }
+        })
+      }
     });
   }
 }
